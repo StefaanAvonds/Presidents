@@ -14,6 +14,7 @@ namespace Presidents.Views
     public partial class PresidentsView : ContentPage
     {
         private string _searchText;
+        private bool _showGif;
         private ObservableCollection<President> _listPresidents;
 
         private PresidentManager _presidentManager;
@@ -28,6 +29,18 @@ namespace Presidents.Views
             {
                 _searchText = value;
                 OnPropertyChanged();
+            }
+        }
+
+        public Boolean ShowGif
+        {
+            get { return _showGif; }
+            set
+            {
+                _showGif = value;
+                OnPropertyChanged();
+                _presidentManager.ShowGif = value;
+                ReloadItemsSource();
             }
         }
 
@@ -56,20 +69,27 @@ namespace Presidents.Views
         {
             base.OnAppearing();
 
-            LoadAllPresidents();
+            ReloadItemsSource();
         }
-
+        
         /// <summary>
         /// Load all presidents on screen.
         /// </summary>
-        private void LoadAllPresidents()
+        private void ReloadItemsSource()
         {
-            ListPresidents = _presidentManager.GetAllPresidents();
+            if (String.IsNullOrWhiteSpace(SearchText))
+            {
+                ListPresidents = _presidentManager.GetAllPresidents();
+            }
+            else
+            {
+                ListPresidents = _presidentManager.SearchPresidentBySearchText(SearchText);
+            }
         }
 
         public void OnValueChanged(object sender, TextChangedEventArgs e)
         {
-            ListPresidents = _presidentManager.SearchPresidentBySearchText(SearchText);
+            ReloadItemsSource();
         }
     }
 }

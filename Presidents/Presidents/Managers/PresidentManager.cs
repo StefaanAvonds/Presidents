@@ -10,21 +10,30 @@ namespace Presidents.Managers
 {
     public class PresidentManager
     {
-        private ObservableCollection<President> _presidents;
+        private bool _showGif;
+        
+        /// <summary>
+        /// Indicates what list of presidents will be shown.
+        /// </summary>
+        public Boolean ShowGif
+        {
+            get { return _showGif; }
+            set { _showGif = value; }
+        }
 
         public PresidentManager()
         {
-            _presidents = GetLocalPresidents();
+            _showGif = false;
         }
 
         /// <summary>
-        /// Returns a list of presidents.
+        /// Returns a collection of presidents with a GIF-image.
         /// </summary>
-        /// <returns>A list of presidents.</returns>
-        private ObservableCollection<President> GetLocalPresidents()
+        /// <returns>A collection of presidents.</returns>
+        private ObservableCollection<President> GetLocalPresidentsWithGif()
         {
             return new ObservableCollection<President> {
-                new President ("George Washington", 1, "http://www.americanpresidents.org/images/01_150.gif"),
+                new President ("George Washington", 1, "https://www.google.be/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwjllcneyt_QAhXFtBoKHb3ACQAQjRwIBw&url=http%3A%2F%2Fphotobucket.com%2Fimages%2Fdancing%2520banana&psig=AFQjCNFUHb-0IGJ3xhxl5SdE8HCxWF0ePQ&ust=1481114264592662"),
                 new President ("John Adams", 2, "http://www.americanpresidents.org/images/02_150.gif"),
                 new President ("Thomas  Jefferson", 3, "http://www.americanpresidents.org/images/03_150.gif"),
                 new President ("James Madison", 4, "http://www.americanpresidents.org/images/04_150.gif"),
@@ -108,12 +117,152 @@ namespace Presidents.Managers
         }
 
         /// <summary>
+        /// Returns a collection of presidents with a JPEG-image.
+        /// </summary>
+        /// <returns>A collection of presidents.</returns>
+        private ObservableCollection<President> GetLocalPresidentsWithJpeg()
+        {
+            return new ObservableCollection<President> {
+                new President ("George Washington", 1, "http://ecx.images-amazon.com/images/I/51cphR%2B3ZnL._AA160_.jpg"),
+                new President ("John Adams", 2, "http://ecx.images-amazon.com/images/I/51kbcKJS8XL._AA160_.jpg"),
+                new President ("Thomas  Jefferson", 3, "http://ecx.images-amazon.com/images/I/41pqrZz8DcL._AA160_.jpg"),
+                new President ("James Madison", 4, "http://ecx.images-amazon.com/images/I/51wJedBh-ML._AA160_.jpg"),
+                new President ("James Monroe", 5, "http://ecx.images-amazon.com/images/I/51LivMVFh1L._AA160_.jpg"),
+                new President ("John Quincy Adams", 6, "http://ecx.images-amazon.com/images/I/41p9jbunvQL._AA160_.jpg"),
+                new President ("Andrew Jackson", 7, "http://ecx.images-amazon.com/images/I/51SDmndXMiL._SL500_SS160_.jpg"),
+                new President ("Martin Van Buren", 8, "http://ecx.images-amazon.com/images/I/51JpNQixP0L._SL500_SS160_.jpg"),
+                new President ("William Henry Harrison", 9, "http://ecx.images-amazon.com/images/I/41ecoa5CI6L._AA160_.jpg"),
+                new President ("John Tyler", 10, "http://ecx.images-amazon.com/images/I/41QLaX4lL4L._AA160_.jpg"),
+                new President ("George Washington", 1, "http://ecx.images-amazon.com/images/I/51cphR%2B3ZnL._AA160_.jpg"),
+                new President ("John Adams", 2, "http://ecx.images-amazon.com/images/I/51kbcKJS8XL._AA160_.jpg"),
+                new President ("Thomas  Jefferson", 3, "http://ecx.images-amazon.com/images/I/41pqrZz8DcL._AA160_.jpg"),
+                new President ("James Madison", 4, "http://ecx.images-amazon.com/images/I/51wJedBh-ML._AA160_.jpg"),
+                new President ("James Monroe", 5, "http://ecx.images-amazon.com/images/I/51LivMVFh1L._AA160_.jpg"),
+                new President ("John Quincy Adams", 6, "http://ecx.images-amazon.com/images/I/41p9jbunvQL._AA160_.jpg"),
+                new President ("Andrew Jackson", 7, "http://ecx.images-amazon.com/images/I/51SDmndXMiL._SL500_SS160_.jpg"),
+                new President ("Martin Van Buren", 8, "http://ecx.images-amazon.com/images/I/51JpNQixP0L._SL500_SS160_.jpg"),
+                new President ("William Henry Harrison", 9, "http://ecx.images-amazon.com/images/I/41ecoa5CI6L._AA160_.jpg"),
+                new President ("John Tyler", 10, "http://ecx.images-amazon.com/images/I/41QLaX4lL4L._AA160_.jpg"),
+                new President ("George Washington", 1, "http://ecx.images-amazon.com/images/I/51cphR%2B3ZnL._AA160_.jpg"),
+                new President ("John Adams", 2, "http://ecx.images-amazon.com/images/I/51kbcKJS8XL._AA160_.jpg"),
+                new President ("Thomas  Jefferson", 3, "http://ecx.images-amazon.com/images/I/41pqrZz8DcL._AA160_.jpg"),
+                new President ("James Madison", 4, "http://ecx.images-amazon.com/images/I/51wJedBh-ML._AA160_.jpg"),
+                new President ("James Monroe", 5, "http://ecx.images-amazon.com/images/I/51LivMVFh1L._AA160_.jpg"),
+                new President ("John Quincy Adams", 6, "http://ecx.images-amazon.com/images/I/41p9jbunvQL._AA160_.jpg"),
+                new President ("Andrew Jackson", 7, "http://ecx.images-amazon.com/images/I/51SDmndXMiL._SL500_SS160_.jpg"),
+                new President ("Martin Van Buren", 8, "http://ecx.images-amazon.com/images/I/51JpNQixP0L._SL500_SS160_.jpg"),
+                new President ("William Henry Harrison", 9, "http://ecx.images-amazon.com/images/I/41ecoa5CI6L._AA160_.jpg"),
+                new President ("John Tyler", 10, "http://ecx.images-amazon.com/images/I/41QLaX4lL4L._AA160_.jpg"),
+                new President ("George Washington", 1, "http://ecx.images-amazon.com/images/I/51cphR%2B3ZnL._AA160_.jpg"),
+                new President ("John Adams", 2, "http://ecx.images-amazon.com/images/I/51kbcKJS8XL._AA160_.jpg"),
+                new President ("Thomas  Jefferson", 3, "http://ecx.images-amazon.com/images/I/41pqrZz8DcL._AA160_.jpg"),
+                new President ("James Madison", 4, "http://ecx.images-amazon.com/images/I/51wJedBh-ML._AA160_.jpg"),
+                new President ("James Monroe", 5, "http://ecx.images-amazon.com/images/I/51LivMVFh1L._AA160_.jpg"),
+                new President ("John Quincy Adams", 6, "http://ecx.images-amazon.com/images/I/41p9jbunvQL._AA160_.jpg"),
+                new President ("Andrew Jackson", 7, "http://ecx.images-amazon.com/images/I/51SDmndXMiL._SL500_SS160_.jpg"),
+                new President ("Martin Van Buren", 8, "http://ecx.images-amazon.com/images/I/51JpNQixP0L._SL500_SS160_.jpg"),
+                new President ("William Henry Harrison", 9, "http://ecx.images-amazon.com/images/I/41ecoa5CI6L._AA160_.jpg"),
+                new President ("John Tyler", 10, "http://ecx.images-amazon.com/images/I/41QLaX4lL4L._AA160_.jpg"),
+                new President ("George Washington", 1, "http://ecx.images-amazon.com/images/I/51cphR%2B3ZnL._AA160_.jpg"),
+                new President ("John Adams", 2, "http://ecx.images-amazon.com/images/I/51kbcKJS8XL._AA160_.jpg"),
+                new President ("Thomas  Jefferson", 3, "http://ecx.images-amazon.com/images/I/41pqrZz8DcL._AA160_.jpg"),
+                new President ("James Madison", 4, "http://ecx.images-amazon.com/images/I/51wJedBh-ML._AA160_.jpg"),
+                new President ("James Monroe", 5, "http://ecx.images-amazon.com/images/I/51LivMVFh1L._AA160_.jpg"),
+                new President ("John Quincy Adams", 6, "http://ecx.images-amazon.com/images/I/41p9jbunvQL._AA160_.jpg"),
+                new President ("Andrew Jackson", 7, "http://ecx.images-amazon.com/images/I/51SDmndXMiL._SL500_SS160_.jpg"),
+                new President ("Martin Van Buren", 8, "http://ecx.images-amazon.com/images/I/51JpNQixP0L._SL500_SS160_.jpg"),
+                new President ("William Henry Harrison", 9, "http://ecx.images-amazon.com/images/I/41ecoa5CI6L._AA160_.jpg"),
+                new President ("John Tyler", 10, "http://ecx.images-amazon.com/images/I/41QLaX4lL4L._AA160_.jpg"),
+                new President ("George Washington", 1, "http://ecx.images-amazon.com/images/I/51cphR%2B3ZnL._AA160_.jpg"),
+                new President ("John Adams", 2, "http://ecx.images-amazon.com/images/I/51kbcKJS8XL._AA160_.jpg"),
+                new President ("Thomas  Jefferson", 3, "http://ecx.images-amazon.com/images/I/41pqrZz8DcL._AA160_.jpg"),
+                new President ("James Madison", 4, "http://ecx.images-amazon.com/images/I/51wJedBh-ML._AA160_.jpg"),
+                new President ("James Monroe", 5, "http://ecx.images-amazon.com/images/I/51LivMVFh1L._AA160_.jpg"),
+                new President ("John Quincy Adams", 6, "http://ecx.images-amazon.com/images/I/41p9jbunvQL._AA160_.jpg"),
+                new President ("Andrew Jackson", 7, "http://ecx.images-amazon.com/images/I/51SDmndXMiL._SL500_SS160_.jpg"),
+                new President ("Martin Van Buren", 8, "http://ecx.images-amazon.com/images/I/51JpNQixP0L._SL500_SS160_.jpg"),
+                new President ("William Henry Harrison", 9, "http://ecx.images-amazon.com/images/I/41ecoa5CI6L._AA160_.jpg"),
+                new President ("John Tyler", 10, "http://ecx.images-amazon.com/images/I/41QLaX4lL4L._AA160_.jpg"),
+                new President ("George Washington", 1, "http://ecx.images-amazon.com/images/I/51cphR%2B3ZnL._AA160_.jpg"),
+                new President ("John Adams", 2, "http://ecx.images-amazon.com/images/I/51kbcKJS8XL._AA160_.jpg"),
+                new President ("Thomas  Jefferson", 3, "http://ecx.images-amazon.com/images/I/41pqrZz8DcL._AA160_.jpg"),
+                new President ("James Madison", 4, "http://ecx.images-amazon.com/images/I/51wJedBh-ML._AA160_.jpg"),
+                new President ("James Monroe", 5, "http://ecx.images-amazon.com/images/I/51LivMVFh1L._AA160_.jpg"),
+                new President ("John Quincy Adams", 6, "http://ecx.images-amazon.com/images/I/41p9jbunvQL._AA160_.jpg"),
+                new President ("Andrew Jackson", 7, "http://ecx.images-amazon.com/images/I/51SDmndXMiL._SL500_SS160_.jpg"),
+                new President ("Martin Van Buren", 8, "http://ecx.images-amazon.com/images/I/51JpNQixP0L._SL500_SS160_.jpg"),
+                new President ("William Henry Harrison", 9, "http://ecx.images-amazon.com/images/I/41ecoa5CI6L._AA160_.jpg"),
+                new President ("John Tyler", 10, "http://ecx.images-amazon.com/images/I/41QLaX4lL4L._AA160_.jpg"),
+                new President ("George Washington", 1, "http://ecx.images-amazon.com/images/I/51cphR%2B3ZnL._AA160_.jpg"),
+                new President ("John Adams", 2, "http://ecx.images-amazon.com/images/I/51kbcKJS8XL._AA160_.jpg"),
+                new President ("Thomas  Jefferson", 3, "http://ecx.images-amazon.com/images/I/41pqrZz8DcL._AA160_.jpg"),
+                new President ("James Madison", 4, "http://ecx.images-amazon.com/images/I/51wJedBh-ML._AA160_.jpg"),
+                new President ("James Monroe", 5, "http://ecx.images-amazon.com/images/I/51LivMVFh1L._AA160_.jpg"),
+                new President ("John Quincy Adams", 6, "http://ecx.images-amazon.com/images/I/41p9jbunvQL._AA160_.jpg"),
+                new President ("Andrew Jackson", 7, "http://ecx.images-amazon.com/images/I/51SDmndXMiL._SL500_SS160_.jpg"),
+                new President ("Martin Van Buren", 8, "http://ecx.images-amazon.com/images/I/51JpNQixP0L._SL500_SS160_.jpg"),
+                new President ("William Henry Harrison", 9, "http://ecx.images-amazon.com/images/I/41ecoa5CI6L._AA160_.jpg"),
+                new President ("John Tyler", 10, "http://ecx.images-amazon.com/images/I/41QLaX4lL4L._AA160_.jpg"),
+                new President ("George Washington", 1, "http://ecx.images-amazon.com/images/I/51cphR%2B3ZnL._AA160_.jpg"),
+                new President ("John Adams", 2, "http://ecx.images-amazon.com/images/I/51kbcKJS8XL._AA160_.jpg"),
+                new President ("Thomas  Jefferson", 3, "http://ecx.images-amazon.com/images/I/41pqrZz8DcL._AA160_.jpg"),
+                new President ("James Madison", 4, "http://ecx.images-amazon.com/images/I/51wJedBh-ML._AA160_.jpg"),
+                new President ("James Monroe", 5, "http://ecx.images-amazon.com/images/I/51LivMVFh1L._AA160_.jpg"),
+                new President ("John Quincy Adams", 6, "http://ecx.images-amazon.com/images/I/41p9jbunvQL._AA160_.jpg"),
+                new President ("Andrew Jackson", 7, "http://ecx.images-amazon.com/images/I/51SDmndXMiL._SL500_SS160_.jpg"),
+                new President ("Martin Van Buren", 8, "http://ecx.images-amazon.com/images/I/51JpNQixP0L._SL500_SS160_.jpg"),
+                new President ("William Henry Harrison", 9, "http://ecx.images-amazon.com/images/I/41ecoa5CI6L._AA160_.jpg"),
+                new President ("John Tyler", 10, "http://ecx.images-amazon.com/images/I/41QLaX4lL4L._AA160_.jpg"),
+                new President ("George Washington", 1, "http://ecx.images-amazon.com/images/I/51cphR%2B3ZnL._AA160_.jpg"),
+                new President ("John Adams", 2, "http://ecx.images-amazon.com/images/I/51kbcKJS8XL._AA160_.jpg"),
+                new President ("Thomas  Jefferson", 3, "http://ecx.images-amazon.com/images/I/41pqrZz8DcL._AA160_.jpg"),
+                new President ("James Madison", 4, "http://ecx.images-amazon.com/images/I/51wJedBh-ML._AA160_.jpg"),
+                new President ("James Monroe", 5, "http://ecx.images-amazon.com/images/I/51LivMVFh1L._AA160_.jpg"),
+                new President ("John Quincy Adams", 6, "http://ecx.images-amazon.com/images/I/41p9jbunvQL._AA160_.jpg"),
+                new President ("Andrew Jackson", 7, "http://ecx.images-amazon.com/images/I/51SDmndXMiL._SL500_SS160_.jpg"),
+                new President ("Martin Van Buren", 8, "http://ecx.images-amazon.com/images/I/51JpNQixP0L._SL500_SS160_.jpg"),
+                new President ("William Henry Harrison", 9, "http://ecx.images-amazon.com/images/I/41ecoa5CI6L._AA160_.jpg"),
+                new President ("John Tyler", 10, "http://ecx.images-amazon.com/images/I/41QLaX4lL4L._AA160_.jpg"),
+                new President ("George Washington", 1, "http://ecx.images-amazon.com/images/I/51cphR%2B3ZnL._AA160_.jpg"),
+                new President ("John Adams", 2, "http://ecx.images-amazon.com/images/I/51kbcKJS8XL._AA160_.jpg"),
+                new President ("Thomas  Jefferson", 3, "http://ecx.images-amazon.com/images/I/41pqrZz8DcL._AA160_.jpg"),
+                new President ("James Madison", 4, "http://ecx.images-amazon.com/images/I/51wJedBh-ML._AA160_.jpg"),
+                new President ("James Monroe", 5, "http://ecx.images-amazon.com/images/I/51LivMVFh1L._AA160_.jpg"),
+                new President ("John Quincy Adams", 6, "http://ecx.images-amazon.com/images/I/41p9jbunvQL._AA160_.jpg"),
+                new President ("Andrew Jackson", 7, "http://ecx.images-amazon.com/images/I/51SDmndXMiL._SL500_SS160_.jpg"),
+                new President ("Martin Van Buren", 8, "http://ecx.images-amazon.com/images/I/51JpNQixP0L._SL500_SS160_.jpg"),
+                new President ("William Henry Harrison", 9, "http://ecx.images-amazon.com/images/I/41ecoa5CI6L._AA160_.jpg"),
+                new President ("John Tyler", 10, "http://ecx.images-amazon.com/images/I/41QLaX4lL4L._AA160_.jpg"),
+                new President ("George Washington", 1, "http://ecx.images-amazon.com/images/I/51cphR%2B3ZnL._AA160_.jpg"),
+                new President ("John Adams", 2, "http://ecx.images-amazon.com/images/I/51kbcKJS8XL._AA160_.jpg"),
+                new President ("Thomas  Jefferson", 3, "http://ecx.images-amazon.com/images/I/41pqrZz8DcL._AA160_.jpg"),
+                new President ("James Madison", 4, "http://ecx.images-amazon.com/images/I/51wJedBh-ML._AA160_.jpg"),
+                new President ("James Monroe", 5, "http://ecx.images-amazon.com/images/I/51LivMVFh1L._AA160_.jpg"),
+                new President ("John Quincy Adams", 6, "http://ecx.images-amazon.com/images/I/41p9jbunvQL._AA160_.jpg"),
+                new President ("Andrew Jackson", 7, "http://ecx.images-amazon.com/images/I/51SDmndXMiL._SL500_SS160_.jpg"),
+                new President ("Martin Van Buren", 8, "http://ecx.images-amazon.com/images/I/51JpNQixP0L._SL500_SS160_.jpg"),
+                new President ("William Henry Harrison", 9, "http://ecx.images-amazon.com/images/I/41ecoa5CI6L._AA160_.jpg"),
+                new President ("John Tyler", 10, "http://ecx.images-amazon.com/images/I/41QLaX4lL4L._AA160_.jpg"),
+            };
+        }
+
+        /// <summary>
         /// Get all presidents.
         /// </summary>
         /// <returns>A collection of all presidents.</returns>
         public ObservableCollection<President> GetAllPresidents()
         {
-            return _presidents;
+            ObservableCollection<President> presidents;
+            if (ShowGif)
+            {
+                presidents = GetLocalPresidentsWithGif();
+            }
+            else
+            {
+                presidents = GetLocalPresidentsWithJpeg();
+            }
+
+            return presidents;
         }
 
         /// <summary>
@@ -123,12 +272,14 @@ namespace Presidents.Managers
         /// <returns>A collection of found presidents.</returns>
         public ObservableCollection<President> SearchPresidentBySearchText(string searchText)
         {
-            if (String.IsNullOrWhiteSpace(searchText)) return GetAllPresidents();
+            var presidents = GetAllPresidents();
+
+            if (String.IsNullOrWhiteSpace(searchText)) return presidents;
 
             string lowerSearchText = searchText.ToLower();
 
             var collection = new ObservableCollection<President>();
-            foreach (var president in _presidents)
+            foreach (var president in presidents)
             {
                 if (president.Name.ToLower().Contains(lowerSearchText)) collection.Add(president);
             }

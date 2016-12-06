@@ -8,6 +8,11 @@
   <StackLayout Orientation="Vertical">
     <SearchBar Text="{Binding SearchText}" Placeholder="search a president" TextColor="Black" HeightRequest="50" TextChanged="OnValueChanged" />
 
+    <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+      <Label Text="Show GIF" />
+      <Switch IsToggled="{Binding ShowGif}" />
+    </StackLayout>
+
     <ListView x:Name="lstPresidents" ItemsSource="{Binding ListPresidents}" CachingStrategy="RecycleElement">
       <ListView.ItemTemplate>
         <DataTemplate>
